@@ -1,6 +1,9 @@
 #executables
 build/*
 
+#include the build directory
+!build
+
 #Mac specific files
 .DS_Store
 
