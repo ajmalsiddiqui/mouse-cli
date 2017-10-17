@@ -38,7 +38,7 @@ In order to run this, execute:
 
 #### Linux or Mac OSX:
 
-The above mentioned steps for windows can be followed for Linux/Mac OSX too. But an easier way to compile and run the main file is to execute the following script:
+The above mentioned [steps for windows](#windows) can be followed for Linux/Mac OSX too. But an easier way to compile and run the main file is to execute the following script:
     `bash scripts/main.sh`
 
 ### To Do:
