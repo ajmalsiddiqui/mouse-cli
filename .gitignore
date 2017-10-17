@@ -1,11 +1,11 @@
 #executables
 build/*
 
-#include the build directory
-!build
-
 #Mac specific files
 .DS_Store
 
 #file to test functions
 src/test.cpp
+
+#test files
+test.*
