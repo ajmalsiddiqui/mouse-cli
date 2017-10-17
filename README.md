@@ -8,7 +8,7 @@
 2. [Current Progress](#current-progress)
 3. [Instructions for Use](#instructions-for-use)
     - [Windows](#windows)
-    - [Linux/Mac OSX](#linux\/mac-osx)
+    - [Linux or Mac OSX](#linux-or-mac-osx)
 4. [To Do](#to-do)
 
 ### Description:
@@ -36,7 +36,7 @@ An example of doing this from the root directory using g++ is:
 In order to run this, execute:
     `build/main`
 
-#### Linux/Mac OSX:
+#### Linux or Mac OSX:
 
 The above mentioned steps for windows can be followed for Linux/Mac OSX too. But an easier way to compile and run the main file is to execute the following script:
     `bash scripts/main.sh`
