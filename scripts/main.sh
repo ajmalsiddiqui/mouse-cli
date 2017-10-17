@@ -12,5 +12,5 @@ wd=`pwd`
 g++ -o $wd/build/main $wd/src/cli.cpp $wd/src/split_delim.cpp $wd/src/man.cpp $wd/main.cpp
 
 if [ $? -eq 0 ]; then
-    $wd/build/cli
+    $wd/build/main
 fi

@@ -1,6 +1,9 @@
 #executables
 build/*
 
+#track the currently compiled executable of main
+!build/main
+
 #Mac specific files
 .DS_Store
 

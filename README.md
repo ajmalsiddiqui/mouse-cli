@@ -9,6 +9,7 @@
 3. [Instructions for Use](#instructions-for-use)
     - [Windows](#windows)
     - [Linux or Mac OSX](#linux-or-mac-osx)
+    - [Executable](#or-run-the-executable)
 4. [To Do](#to-do)
 
 ### Description:
@@ -23,7 +24,7 @@ The basic CLI is working. Bug fixes and error handling are yet to be completed.
 
 #### Windows: 
 
-Currently no makefiles exist for this project. And unfortunately no script has been written to compile and link the code. In order to run this, compile the following files using your favourite compiler and preferably output the executable into the build directory:
+Currently no makefiles exist for this project. And unfortunately no script has been written to compile and link the code. In order to run this, compile the following files using your favourite compiler and preferably output the executable into the build directory (create a build directory by running `mkdir build` if you haven't done so already):
 
 - main.cpp
 - src/cli.cpp
@@ -40,6 +41,10 @@ In order to run this, execute:
 
 The above mentioned [steps for windows](#windows) can be followed for Linux/Mac OSX too. But an easier way to compile and run the main file is to execute the following script:
     `bash scripts/main.sh`
+
+#### Or Run the Executable
+
+The currently compiled code is available directly as an executable in build/main.
 
 ### To Do:
 
