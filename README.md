@@ -8,7 +8,7 @@
 2. [Current Progress](#current-progress)
 3. [Instructions for Use](#instructions-for-use)
     - [Windows](#windows)
-    - [Linux/Mac OSX](#linux/mac-osx)
+    - [Linux/Mac OSX](#linux\/mac-osx)
 4. [To Do](#to-do)
 
 ### Description:
