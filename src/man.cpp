@@ -40,7 +40,7 @@ void man(string command){
     else if(command == "div"){
         cout << endl << "Divides two floating point numbers. Error is thrown if second number is zero." << endl << endl;
         cout << "Usage:" << endl;
-        cout << "sub <number_1> <number_2>" << endl;
+        cout << "div <number_1> <number_2>" << endl;
         cout << "Example 1:" << endl;
         cout << "div 2.5 3.5" << endl;
         cout << "Result:" << endl;

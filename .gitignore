@@ -7,6 +7,9 @@ build/*
 #Mac specific files
 .DS_Store
 
+#Editor specific file
+.vscode
+
 #file to test functions
 src/test.cpp
 
