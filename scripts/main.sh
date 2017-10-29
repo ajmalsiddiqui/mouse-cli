@@ -9,7 +9,7 @@ fi
 
 wd=`pwd`
 
-g++ -o $wd/build/main $wd/src/cli.cpp $wd/src/split_delim.cpp $wd/src/man.cpp $wd/src/interruptHandlers/keyboard/unix/getKeyPress.cpp $wd/main.cpp
+g++ -o $wd/build/main $wd/src/cli.cpp $wd/src/split_delim.cpp $wd/src/man.cpp $wd/src/interruptHandlers/keyboard/unix/getKeyPress.cpp $wd/main.cpp -lncurses
 
 if [ $? -eq 0 ]; then
     $wd/build/main

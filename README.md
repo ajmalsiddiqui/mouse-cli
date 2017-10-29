@@ -24,22 +24,11 @@ The basic CLI is working. Bug fixes and error handling are yet to be completed.
 
 #### Windows: 
 
-Currently no makefiles exist for this project. And unfortunately no script has been written to compile and link the code. In order to run this, compile the following files using your favourite compiler and preferably output the executable into the build directory (create a build directory by running `mkdir build` if you haven't done so already):
-
-- main.cpp
-- src/cli.cpp
-- src/split_delimit.cpp
-- src/man.cpp
-
-An example of doing this from the root directory using g++ is:
-    `g++ -o build/main src/cli.cpp src/split_delim.cpp src/man.cpp main.cpp`
-
-In order to run this, execute:
-    `build/main`
+Currently not supported for Windows.
 
 #### Linux or Mac OSX:
 
-The above mentioned [steps for windows](#windows) can be followed for Linux/Mac OSX too. But an easier way to compile and run the main file is to execute the following script:
+To compile and run the main file, execute the following script:
     `bash scripts/main.sh`
 
 #### Or Run the Executable

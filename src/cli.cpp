@@ -2,6 +2,7 @@
 * TODO: Add error handling for invalid commands and arguments
 * TODO: Fix bugs: no argument commands
 * TODO: fix indentation bug
+* TODO: Fix exit bug
 **/
 
 #include <iostream>
@@ -91,21 +92,51 @@ string handleKey(int code){
     // TODO: add command history logic
     //Ctrl + C
     if(code == 3) {
-        handleCommand("exit");
+        //handleCommand("exit");
+        cout << "Exiting CLI..." << endl;
+        continueFlag = false;
+        exit(0);
         return "null";
     }
     //Up arrow
     else if(code == 65) {
         //cout << "dummy";
-        return "add 2 3";
+        //ensure command stack is not empty
+        //cout << "up" << endl;
+        /*if(!commandStack.empty()) {
+            string tempCommand = commandStack.top();
+            commandStack.pop();
+            bufferStack.push(tempCommand);
+            return tempCommand;
+        }
+        else {
+            return "";
+        }*/
+        if(!commandStack.empty())
+            return commandStack.top();
+        return "$";
+        //return "add 2 3";
     }
     //down arrow
     else if(code == 66) {
         //cout << "dummyd";
-        return "div 3 0";
+        //ensure bufferstack is not empty
+        //cout << "down" << endl;
+        /*if(!bufferStack.empty()) {
+            string tempCommand = bufferStack.top();
+            bufferStack.pop();
+            commandStack.push(tempCommand);
+            return tempCommand;
+        }
+        else {
+            return "";
+        }*/
+        //return "div 3 0";
+        return "$";
     }
     else {
-        return "\0";
+        cout << (char) code;
+        return "$";
     }
 }
 
@@ -118,6 +149,7 @@ void cli() {
     
     string command = "";
     string * tmp;
+    
     //string * args; 
     
     /*The infinite loop that runs the CLI. It is terminated when the exit command is given*/;
@@ -128,23 +160,29 @@ void cli() {
         int kp = getKeyPress();
         //cout << kp << endl;
 
-        if(handleKey(kp) == "\0") getline(cin, command);
+        string handle = handleKey(kp);
+        //cout << "hello" << endl;
+
+        if(handle == "$") getline(cin, command);
         
-        command = handleKey(kp) != "\0" ? handleKey(kp) : (char)kp + command;
-        if(handleKey(kp) != "\0") cout << command;
+        command = handle != "$" ? handle : (char)kp + command;
+        if(handle != "$") cout << command;
 
         //only check for enter key press if command history is being used
-        int checkEnter = handleKey(kp) == "\0" ? 13 : getKeyPress();
+        int checkEnter = handle == "$" ? 13 : getKeyPress();
+        cout << ((handle != "$") ? "\n" : "");
 
         //code for enter key
         if(checkEnter == 13){
-            cout << "enter" << endl;
+            //cout << "enter" << endl;
             commandStack.push(command);
             
             //free this
             string * args = splitDelimit(command, ' ');
             
             handleCommand(args[0], args[1], args[2]);
+
+            free(args);
         }
 
     }
