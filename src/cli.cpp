@@ -9,6 +9,8 @@
 #include <stack>
 #include <string>
 
+#include <pthread.h>
+
 //include the OS specific interrupt handler
 //_WIN32 is defined for both windows 64 bit and 32 bit
 #if defined(_WIN32)
@@ -16,6 +18,7 @@
 //if not windows, then assume unix
 #else
     #include "interruptHandlers/keyboard/unix/getKeyPress.h"
+	#include "interruptHandlers/mouse/unix/getMouseState.h"
 #endif
 
 #include "split_delim.h"
@@ -39,7 +42,8 @@ void handleCommand(string command, string args_1 = "null", string args_2 = "null
     //handle exit command
     if(args[0] == "exit") {
         cout << prompt << "Exiting CLI..." << endl;
-        continueFlag = false;
+        continueFlag = false;	
+	exit(0);
         return;
     }
 
@@ -135,10 +139,39 @@ string handleKey(int code){
         return "$";
     }
     else {
-        cout << (char) code;
+        //cout << (char) code;
         return "$";
     }
 }
+
+string handleMouse(int code){
+	if(code == 1) {
+		// enter key pressed ;)
+		return "ent";
+		
+	}
+	else if(code == 2) {
+		// ctrl + c
+		cout << prompt << "Exiting CLI..." << endl;
+		continueFlag = false;
+		exit(0);
+		return "end";
+	}
+	else return "$";
+}
+
+void *mouseLoop(void *vargp){
+	while(1){
+		int mc = getMouseState();
+		//cout << mc << endl;
+		
+		if(mc == 1) {
+			cout << prompt << "Exiting CLI..." << endl;
+			exit(0);
+		}
+	}	
+}
+
 
 void cli() {
     cout << endl << "Welcome to the demonstration CLI." << endl 
@@ -151,11 +184,18 @@ void cli() {
     string * tmp;
     
     //string * args; 
+
+	//p thread that looks for mouse interrupt
+	pthread_t tid;
+	pthread_create(&tid, NULL, mouseLoop, NULL);
     
     /*The infinite loop that runs the CLI. It is terminated when the exit command is given*/;
     while(continueFlag) {
 
-        cout << prompt << " ";
+        cout << prompt;
+
+	//int mc = getMouseState();
+	//string mouse = handleMouse(mc);
 
         int kp = getKeyPress();
         //cout << kp << endl;
@@ -170,7 +210,9 @@ void cli() {
 
         //only check for enter key press if command history is being used
         int checkEnter = handle == "$" ? 13 : getKeyPress();
+	//if(handleMouse(mc) == "ent") checkEnter = 13;
         cout << ((handle != "$") ? "\n" : "");
+
 
         //code for enter key
         if(checkEnter == 13){
@@ -182,7 +224,7 @@ void cli() {
             
             handleCommand(args[0], args[1], args[2]);
 
-            free(args);
+            //free(args);
         }
 
     }

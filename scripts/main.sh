@@ -9,7 +9,7 @@ fi
 
 wd=`pwd`
 
-g++ -o $wd/build/main $wd/src/cli.cpp $wd/src/split_delim.cpp $wd/src/man.cpp $wd/src/interruptHandlers/keyboard/unix/getKeyPress.cpp $wd/main.cpp -lncurses
+g++ -o $wd/build/main -std=c++11 $wd/src/cli.cpp $wd/src/split_delim.cpp $wd/src/man.cpp $wd/src/interruptHandlers/keyboard/unix/getKeyPress.cpp $wd/src/interruptHandlers/mouse/unix/getMouseState.cpp $wd/main.cpp -lncurses -lpthread
 
 if [ $? -eq 0 ]; then
     $wd/build/main

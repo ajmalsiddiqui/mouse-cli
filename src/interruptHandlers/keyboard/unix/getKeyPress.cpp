@@ -13,17 +13,20 @@ int getKeyPress() {
     * By default, terminal buffers input until enter is pressed
     * use system call to make terminal send all keystrokes directly to stdin
     **/
-    /*system ("/bin/stty raw");
-    int first, second, third;
+    system ("/bin/stty raw");
+    /*int first, second, third;
     first = getchar();*/
-
-    SCREEN *s = newterm(NULL, stdin, stdout);
+	
+//filter();
+    /*SCREEN *s = newterm(NULL, stdin, stdout);
     if (s == 0)
         return(-1);
     //cbreak();
+	//filter();
+	//initscr();
     raw();
     noecho();
-    keypad(stdscr, TRUE);
+    keypad(stdscr, TRUE);*/
     
     int first, second, third;
     first = getchar();
@@ -32,7 +35,7 @@ int getKeyPress() {
     */
     if(first == 13 || first == 3) {
         //return terminal input behaviour to normal
-        //system ("/bin/stty cooked");
+        system ("/bin/stty cooked");
         endwin();
         return first;
     }
@@ -41,8 +44,8 @@ int getKeyPress() {
         second = getchar();
         third = getchar();
         //return terminal input behaviour to normal
-        //system ("/bin/stty cooked");
-        endwin();
+        system ("/bin/stty cooked");
+        //endwin();
         //codes for up arrow and down arrow are 27 91 65 and 27 91 66
         if(third != 65 && third != 66) return -1;
         return third;
@@ -51,8 +54,8 @@ int getKeyPress() {
         //if the key pressed is not enter, ctrl + c, up arrow or down arrow, write normal characters to output
         //cout << prompt << " ";
         //putchar(first);
-        endwin();
-        //system ("/bin/stty cooked");
+        //endwin();
+        system ("/bin/stty cooked");
         return first;
     }
 
