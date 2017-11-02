@@ -10,6 +10,7 @@ string * splitDelimit(string toSplit, char delimiter) {
 
     for(int i=0; i<toSplit.length(); i++) {
         if(toSplit[i] == delimiter) {
+	    if(i == toSplit.length() - 1) break;
             delimitedArrayVector.push_back(temp);
             temp = "";
         }
@@ -22,10 +23,13 @@ string * splitDelimit(string toSplit, char delimiter) {
         }
     }
 
-    string * delimitedArray = (string *) malloc(delimitedArrayVector.size() * sizeof(string));
+    //string * delimitedArray = (string *) malloc((delimitedArrayVector.size() + 1)* sizeof(string));
 
+    string * delimitedArray = (string *) malloc(4* sizeof(string));
     for(int i=0; i<delimitedArrayVector.size(); i++) 
         delimitedArray[i] = delimitedArrayVector[i];
+	// in this use case, each command has length 3, so the 4th element can store the size
+	delimitedArray[3] = to_string(delimitedArrayVector.size());
     
     return delimitedArray;
 }

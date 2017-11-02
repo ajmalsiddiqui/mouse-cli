@@ -60,6 +60,22 @@ void handleCommand(string command, string args_1 = "null", string args_2 = "null
         man(args[1]);
         return;
     }
+
+	//system commands
+	else if(args[0] == "sys"){
+		if(args[1] == "null"){
+			cout << prompt << "Error: no command supplied" << endl;
+			return;
+		}
+		else if(args[2] == "null") {
+			system(args[1].c_str());
+			return;
+		}
+		else {
+			system((args[1] + " " + args[2]).c_str());
+			return;
+		}
+	}
     
     //arithmetic commands
     else if(args[0] == "add") {
@@ -166,7 +182,8 @@ void *mouseLoop(void *vargp){
 		//cout << mc << endl;
 		
 		if(mc == 1) {
-			cout << prompt << "Exiting CLI..." << endl;
+			system("/bin/stty cooked");
+			cout << "Exiting CLI..." << endl;
 			exit(0);
 		}
 	}	
@@ -221,8 +238,13 @@ void cli() {
             
             //free this
             string * args = splitDelimit(command, ' ');
-            
-            handleCommand(args[0], args[1], args[2]);
+	
+	    if(stoi(args[3]) == 3)
+            	handleCommand(args[0], args[1], args[2]);
+	    else if(stoi(args[3]) == 2)
+		handleCommand(args[0], args[1], "null");
+	    else
+		handleCommand(args[0], "null", "null");
 
             //free(args);
         }

@@ -36,7 +36,7 @@ int getKeyPress() {
     if(first == 13 || first == 3) {
         //return terminal input behaviour to normal
         system ("/bin/stty cooked");
-        endwin();
+        //endwin();
         return first;
     }
 
@@ -59,7 +59,7 @@ int getKeyPress() {
         return first;
     }
 
-    endwin();
+    //endwin();
     
 }
 
